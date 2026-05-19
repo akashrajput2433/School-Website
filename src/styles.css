@@ -12,10 +12,15 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 88px;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   background: #ffffff;
+  text-rendering: optimizeLegibility;
 }
 
 button,
@@ -23,6 +28,24 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+a {
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
 img {
   max-width: 100%;
+}
+
+::selection {
+  background: rgba(244, 185, 64, 0.35);
+  color: #082f63;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(244, 185, 64, 0.85);
+  outline-offset: 4px;
 }
