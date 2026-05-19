@@ -1,3 +1,4 @@
+import { BackToTop } from "./components/BackToTop.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { Header } from "./components/Header.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
@@ -11,6 +12,7 @@ export default function App() {
         <HomePage config={siteConfig} />
       </main>
       <Footer school={siteConfig.school} navItems={siteConfig.navItems} />
+      <BackToTop />
     </div>
   );
 }

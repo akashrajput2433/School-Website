@@ -46,30 +46,69 @@ export const siteConfig = {
       message:
         "We believe that every child deserves a disciplined, caring, and inspiring learning environment. Our focus is to build strong academic foundations, confident communication, good values, and curiosity for lifelong learning."
     },
+    about: {
+      intro:
+        "S.D. Public & Convent School is an English Medium CBSE-pattern school committed to building strong academic foundations, confident communication, discipline, values, and all-round development for young learners.",
+      mission:
+        "To provide affordable, modern, caring, and activity-based education that prepares children for academic success and responsible citizenship.",
+      vision:
+        "To become a trusted school community where every child feels safe, confident, curious, and ready for a bright future.",
+      philosophy:
+        "We combine classroom discipline with friendly guidance, digital learning, spoken English practice, cultural activities, and regular academic support.",
+      timeline: [
+        { year: "Foundation", title: "A trusted local school identity" },
+        { year: "Growth", title: "English medium learning with modern facilities" },
+        { year: "Today", title: "Admissions open for Session 2026-27" }
+      ]
+    },
     highlights: [
       {
-        title: "Smart Classrooms",
+        title: "Smart Classes",
         description:
           "Digital learning support, visual lessons, and interactive classroom practices for stronger understanding.",
         icon: "MonitorPlay"
       },
       {
+        title: "Computer Lab",
+        description:
+          "Basic computer awareness and guided digital exposure for age-appropriate technology confidence.",
+        icon: "Laptop"
+      },
+      {
+        title: "English Speaking Environment",
+        description:
+          "Daily communication practice that helps students speak with clarity, confidence, and discipline.",
+        icon: "MessagesSquare"
+      },
+      {
+        title: "Sports Activities",
+        description:
+          "Outdoor games and physical activities that support fitness, teamwork, and healthy competition.",
+        icon: "Trophy"
+      },
+      {
+        title: "Transportation",
+        description:
+          "Transport facility support for nearby areas with route guidance from the school office.",
+        icon: "Bus"
+      },
+      {
+        title: "Library",
+        description:
+          "Reading habits, story exposure, and reference learning to develop curiosity beyond textbooks.",
+        icon: "Library"
+      },
+      {
+        title: "CCTV Security",
+        description:
+          "A supervised campus approach for safe, clean, and friendly school surroundings.",
+        icon: "Cctv"
+      },
+      {
         title: "Experienced Teachers",
         description:
-          "Qualified, caring educators who guide students with attention, discipline, and regular academic support.",
+          "Qualified, caring educators who guide students with attention, discipline, and regular support.",
         icon: "GraduationCap"
-      },
-      {
-        title: "CBSE Curriculum",
-        description:
-          "Balanced academic planning inspired by CBSE standards for concept clarity and exam confidence.",
-        icon: "BookOpenCheck"
-      },
-      {
-        title: "Co-curricular Growth",
-        description:
-          "Sports, events, festival activities, and creative learning opportunities for all-round development.",
-        icon: "Sparkles"
       }
     ],
     stats: [
@@ -77,6 +116,49 @@ export const siteConfig = {
       { value: "30+", label: "Teaching & Support Staff" },
       { value: "100%", label: "Academic Support" },
       { value: "8", label: "Class Levels" }
+    ],
+    academics: {
+      curriculum:
+        "The academic plan follows a CBSE-inspired structure with concept clarity, reading, writing, spoken English, numeracy, science awareness, social understanding, and regular revision.",
+      classStructure: ["Pre-Nursery", "L.K.G.", "U.K.G.", "Class 1 to 5", "Class 6 to 8"],
+      systems: [
+        "Regular classwork and homework checking",
+        "Unit tests and periodic assessments",
+        "Revision support before examinations",
+        "Activity-based learning for younger classes",
+        "Parent communication for progress updates"
+      ],
+      calendar: [
+        { month: "April - May", work: "New session orientation and baseline learning" },
+        { month: "July - September", work: "Unit tests, activities, and parent interaction" },
+        { month: "October - December", work: "Half-yearly review, festivals, and academic support" },
+        { month: "January - March", work: "Final revision, assessments, and promotion planning" }
+      ]
+    },
+    staff: [
+      {
+        name: "Principal",
+        designation: "Academic Leadership",
+        qualification: "School Administration & Teaching Guidance",
+        image: "/assets/school/faculty-male.png"
+      },
+      {
+        name: "Primary Teachers Team",
+        designation: "L.K.G. to Class 5",
+        qualification: "Child-centered classroom teaching",
+        image: "/assets/school/faculty-female.png"
+      },
+      {
+        name: "Middle School Faculty",
+        designation: "Class 6 to 8",
+        qualification: "Subject-wise academic support",
+        image: "/assets/school/faculty-male.png"
+      }
+    ],
+    toppers: [
+      { name: "Aarav Singh", className: "Class 8", score: "96%", achievement: "Academic Excellence" },
+      { name: "Ananya Patel", className: "Class 7", score: "95%", achievement: "Consistent Performer" },
+      { name: "Riya Sharma", className: "Class 6", score: "94%", achievement: "All-round Achievement" }
     ],
     notices: [
       {
@@ -99,7 +181,21 @@ export const siteConfig = {
         date: "Active",
         description:
           "School transport support is available for nearby areas. Please confirm routes with the office."
+      },
+      {
+        tag: "Exam",
+        title: "Assessment Schedule to be Announced",
+        date: "Soon",
+        description:
+          "Class-wise exam dates and revision guidance will be shared with parents before assessments."
       }
+    ],
+    mandatoryDocs: [
+      "Affiliation Certificate",
+      "NOC",
+      "Recognition Certificate",
+      "Academic Calendar",
+      "Fee Structure"
     ],
     galleryPreview: [
       {
@@ -121,7 +217,18 @@ export const siteConfig = {
         title: "Women Faculty Team",
         category: "Staff",
         image: "/assets/school/faculty-female.png"
+      },
+      {
+        title: "Admission Poster",
+        category: "Admissions",
+        image: "/assets/school/banner-admission-gold.jpeg"
       }
+    ],
+    videos: [
+      { title: "School Introduction", category: "Campus Video" },
+      { title: "Annual Day Moments", category: "Event Video" },
+      { title: "Classroom Activities", category: "Activity Video" }
     ]
   }
 };
+

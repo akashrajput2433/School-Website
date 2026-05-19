@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  AboutSection,
+  AcademicZone,
+  ContactSection,
+  MandatoryDocs,
+  StaffSection,
+  ToppersSection,
+  VideosSection
+} from "./StepFourSections.jsx";
+import {
   ArrowRight,
   BookOpenCheck,
+  Bus,
   CalendarDays,
+  Cctv,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
   GraduationCap,
+  Laptop,
+  Library,
   Megaphone,
+  MessagesSquare,
   MonitorPlay,
   PhoneCall,
   ShieldCheck,
   Sparkles,
   Star,
+  Trophy,
   UsersRound
 } from "lucide-react";
 
 const iconMap = {
   BookOpenCheck,
+  Bus,
+  Cctv,
   GraduationCap,
+  Laptop,
+  Library,
+  MessagesSquare,
   MonitorPlay,
-  Sparkles
+  Sparkles,
+  Trophy
 };
 
 const fadeUp = {
@@ -202,7 +223,7 @@ function HeroSlider({ school, assets, admission }) {
 
 function PrincipalMessage({ assets, message }) {
   return (
-    <section id="about" className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-20 sm:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
         <motion.div
           initial="hidden"
@@ -467,12 +488,25 @@ export function HomePage({ config }) {
     <>
       <HeroSlider school={school} assets={assets} admission={home.admission} />
       <PrincipalMessage assets={assets} message={home.principalMessage} />
+      <AboutSection about={home.about} assets={assets} />
       <Highlights highlights={home.highlights} />
       <Stats stats={home.stats} />
+      <AcademicZone academics={home.academics} />
+      <StaffSection staff={home.staff} />
+      <ToppersSection toppers={home.toppers} />
       <Notices notices={home.notices} />
+      <MandatoryDocs docs={home.mandatoryDocs} />
       <GalleryPreview gallery={home.galleryPreview} />
-      <AdmissionBand school={school} />
+      <VideosSection videos={home.videos} />
+      <ContactSection school={school} />
     </>
   );
 }
+
+
+
+
+
+
+
 
