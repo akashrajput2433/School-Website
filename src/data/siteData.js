@@ -1,14 +1,24 @@
 export const siteConfig = {
   school: {
     name: "S.D. Public & Convent School",
+    officialName: "S.D. Public School",
     shortName: "S.D. Public School",
     tagline: "Quality Education for a Bright Future",
     type: "English Medium CBSE School",
     classes: "Pre-Nursery to Class 8",
-    address: "Halamai, Chhitpalgarh, Mandhata, Pratapgarh, Uttar Pradesh",
-    phone: ["9451341263", "9794341445", "8707858651"],
-    email: "info@sdpublicschool.in",
-    logo: "/assets/school/logo-web.png"
+    address: "Halamai, Chhitpalgarh, Mandhata, Pratapgarh - 230402, Uttar Pradesh",
+    udiseCode: "09434102720",
+    affiliationNo: "PRA09431331507",
+    academicSession: "2025-26",
+    phone: ["9691984011", "9451341263", "9794341445", "8707858651"],
+    email: "sdpublicschoolhalamai@gmail.com",
+    logo: "/assets/school/logo-web.png",
+    publicInfo: [
+      { label: "Official Name", value: "S.D. Public School" },
+      { label: "UDISE Code", value: "09434102720" },
+      { label: "Affiliation No.", value: "PRA09431331507" },
+      { label: "Academic Session", value: "2025-26" }
+    ]
   },
   navItems: [
     { label: "Home", href: "#home" },
@@ -128,6 +138,13 @@ export const siteConfig = {
         "Activity-based learning for younger classes",
         "Parent communication for progress updates"
       ],
+      gradingSystem: [
+        { grade: "A1", range: "90 - 100%", remark: "Outstanding" },
+        { grade: "A2", range: "75 - 89%", remark: "Excellent" },
+        { grade: "B1", range: "56 - 74%", remark: "Very Good" },
+        { grade: "B2", range: "35 - 55%", remark: "Good" },
+        { grade: "C", range: "Below 35%", remark: "Barely acceptable" }
+      ],
       calendar: [
         { month: "April - May", work: "New session orientation and baseline learning" },
         { month: "July - September", work: "Unit tests, activities, and parent interaction" },
@@ -231,5 +248,7 @@ export const siteConfig = {
     ]
   }
 };
+
+
 
 

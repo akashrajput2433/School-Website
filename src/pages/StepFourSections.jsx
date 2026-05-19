@@ -120,6 +120,23 @@ export function AcademicZone({ academics }) {
                 ))}
               </div>
             </div>
+            <div className="rounded-3xl bg-white p-6 shadow-soft">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-school-blue">Grading System</p>
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100">
+                <div className="grid grid-cols-[0.75fr_1fr_1.35fr] bg-school-navy px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white">
+                  <span>Grade</span>
+                  <span>Marks</span>
+                  <span>Remark</span>
+                </div>
+                {academics.gradingSystem.map((item) => (
+                  <div key={item.grade} className="grid grid-cols-[0.75fr_1fr_1.35fr] border-t border-slate-100 px-4 py-3 text-sm">
+                    <span className="font-black text-school-navy">{item.grade}</span>
+                    <span className="font-semibold text-slate-600">{item.range}</span>
+                    <span className="font-semibold text-slate-700">{item.remark}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -225,6 +242,14 @@ export function ContactSection({ school }) {
           <div>
             <SectionHeading align="left" eyebrow="Contact Us" title="Ready to discuss your child's admission?" description="Reach the school office for admissions, transport details, fee structure, class availability, and campus visit guidance." />
             <div className="mt-8 grid gap-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                {school.publicInfo.map((item) => (
+                  <div key={item.label} className="rounded-3xl bg-white p-5 shadow-soft">
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-school-blue">{item.label}</p>
+                    <p className="mt-2 text-lg font-black text-school-navy">{item.value}</p>
+                  </div>
+                ))}
+              </div>
               <div className="flex gap-4 rounded-3xl bg-white p-5 shadow-soft">
                 <MapPin className="shrink-0 text-school-blue" size={24} />
                 <p className="text-sm font-semibold leading-7 text-slate-700">{school.address}</p>
