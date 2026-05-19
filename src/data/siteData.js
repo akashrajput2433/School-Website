@@ -8,7 +8,7 @@ export const siteConfig = {
     address: "Halamai, Chhitpalgarh, Mandhata, Pratapgarh, Uttar Pradesh",
     phone: ["9451341263", "9794341445", "8707858651"],
     email: "info@sdpublicschool.in",
-    logo: "/assets/school/logo.jpeg"
+    logo: "/assets/school/logo-web.png"
   },
   navItems: [
     { label: "Home", href: "#home" },
@@ -231,4 +231,5 @@ export const siteConfig = {
     ]
   }
 };
+
 
