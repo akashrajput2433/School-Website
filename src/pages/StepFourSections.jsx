@@ -45,7 +45,7 @@ export function AboutSection({ about, assets }) {
   return (
     <section id="about" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <SectionHeading
               align="left"
@@ -62,40 +62,42 @@ export function AboutSection({ about, assets }) {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <article key={item.label} className="flex h-full min-h-[220px] flex-col rounded-[1.75rem] border border-white bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-school-gold/50 hover:shadow-premium">
-                    <Icon className="text-school-blue" size={24} />
+                  <article key={item.label} className="flex h-full min-h-[190px] flex-col rounded-[1.5rem] border border-white bg-white p-5 shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:border-school-gold/50 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-school-mist text-school-blue dark:bg-white/10 dark:text-school-gold">
+                      <Icon size={22} />
+                    </span>
                     <h3 className="mt-4 text-lg font-black text-school-navy">{item.label}</h3>
-                    <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{item.text}</p>
                   </article>
                 );
               })}
             </div>
           </div>
 
-          <div className="grid gap-5">
+          <div className="grid content-start gap-3">
             <div className="group relative overflow-hidden rounded-[2rem] bg-white p-2 shadow-premium ring-1 ring-slate-100 dark:bg-white/[0.08] dark:ring-white/10">
-              <div className="relative h-[430px] overflow-hidden rounded-[1.5rem] bg-school-mist sm:h-[500px] lg:h-[560px]">
+              <div className="relative h-[360px] overflow-hidden rounded-[1.5rem] bg-school-mist sm:h-[420px] lg:h-[460px]">
                 <img
                   src={assets.aboutHero}
                   alt="S.D. Public & Convent School main gate"
                   className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-school-navy/60 via-school-navy/5 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 rounded-3xl bg-white/[0.92] p-5 shadow-soft backdrop-blur dark:bg-[#17243a]/90">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-school-blue dark:text-school-gold">
-                    Our Campus Identity
-                  </p>
-                  <p className="mt-2 text-xl font-black leading-tight text-school-navy dark:text-white">
-                    A welcoming school environment for confident learning.
-                  </p>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-school-navy/35 via-transparent to-transparent" />
               </div>
             </div>
-            <div className="grid auto-rows-fr gap-4 sm:grid-cols-3">
+            <div className="rounded-[1.5rem] border border-white bg-white p-4 shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-school-blue dark:text-school-gold">
+                Our Campus Identity
+              </p>
+              <p className="mt-1.5 text-lg font-black leading-tight text-school-navy dark:text-white">
+                A welcoming school environment for confident learning.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
               {about.timeline.map((item) => (
-                <div key={item.year} className="flex min-h-[132px] flex-col justify-between rounded-[1.75rem] bg-school-navy p-5 text-white shadow-soft">
-                  <p className="text-sm font-black uppercase tracking-[0.16em] text-school-gold">{item.year}</p>
-                  <p className="mt-3 text-sm font-semibold leading-6 text-blue-50">{item.title}</p>
+                <div key={item.year} className="flex min-h-[86px] flex-col justify-center rounded-[1.25rem] bg-school-navy p-3.5 text-white shadow-soft ring-1 ring-white/10 transition duration-300 hover:-translate-y-1 hover:shadow-premium">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-school-gold">{item.year}</p>
+                  <p className="mt-1.5 text-[13px] font-semibold leading-5 text-blue-50">{item.title}</p>
                 </div>
               ))}
             </div>
