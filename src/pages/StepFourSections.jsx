@@ -163,35 +163,43 @@ export function AcademicZone({ academics }) {
 }
 export function StaffSection({ staff }) {
   return (
-    <section id="staff" className="bg-white py-16 sm:py-20">
+    <section id="staff" className="relative overflow-hidden bg-white py-16 sm:py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(56,189,248,0.13),transparent_28%),radial-gradient(circle_at_90%_15%,rgba(244,185,64,0.13),transparent_24%)] dark:opacity-60" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <SectionHeading eyebrow="Staff" title="Leadership and office team." description="Meet the school administration and office team available for admissions, records, academic coordination, and parent support." />
-        <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
-          {staff.map((person) => (
-            <article key={person.name} className="flex h-full min-h-[460px] flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:ring-school-gold/50 hover:shadow-premium">
-              <div className="h-44 shrink-0 overflow-hidden bg-school-mist">
-                <img src={person.image} alt={person.name} className="h-full w-full object-cover" />
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-school-blue">{person.designation}</p>
-                <h3 className="mt-2 text-xl font-black text-school-navy">{person.name}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{person.qualification}</p>
-                {person.phone ? (
-                  <div className="mt-auto grid gap-2 pt-4">
-                    {person.phone.split(",").map((phone) => {
-                      const cleanPhone = phone.trim();
-                      return (
-                        <a key={cleanPhone} href={`tel:${cleanPhone}`} className="inline-flex items-center gap-2 rounded-full bg-school-mist px-4 py-2 text-sm font-black text-school-navy transition hover:bg-school-gold">
-                          <Phone size={16} />
-                          {cleanPhone}
-                        </a>
-                      );
-                    })}
+        <div className="relative">
+          <SectionHeading eyebrow="Staff" title="Leadership and office team." description="Meet the school administration and office team available for admissions, records, academic coordination, and parent support." />
+          <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
+            {staff.map((person, index) => (
+              <article key={person.name} className="group flex h-full min-h-[520px] flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1.5 hover:ring-school-gold/60 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
+                <div className="relative h-72 shrink-0 overflow-hidden bg-school-mist">
+                  <img src={person.image} alt={person.name} className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-school-navy/85 via-school-navy/12 to-transparent" />
+                  <div className="staff-rank-badge absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy shadow-soft backdrop-blur">
+                    Team {String(index + 1).padStart(2, "0")}
                   </div>
-                ) : null}
-              </div>
-            </article>
-          ))}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="inline-flex rounded-full bg-school-gold px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy">
+                      {person.designation}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-[1.35rem] font-black leading-tight text-school-navy dark:text-white">{person.name}</h3>
+                  <p className="mt-3 min-h-[56px] text-sm font-semibold leading-7 text-slate-600 dark:text-slate-200">{person.qualification}</p>
+                  <a href={`tel:${person.phone}`} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-school-navy px-4 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
+                    <Phone size={17} />
+                    {person.phone}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 rounded-[2rem] bg-school-navy p-5 text-center text-white shadow-premium sm:p-6">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-school-gold">Parent Support Team</p>
+            <p className="mt-2 text-sm font-semibold leading-7 text-blue-50">
+              Our leadership and office staff help parents with admissions, records, academic coordination, and daily school support.
+            </p>
+          </div>
         </div>
       </div>
     </section>

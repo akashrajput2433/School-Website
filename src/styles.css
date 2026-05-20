@@ -129,6 +129,10 @@ textarea {
   color: #d6e2f1 !important;
 }
 
+.dark .staff-rank-badge {
+  color: #082f63 !important;
+}
+
 .dark .border-slate-100,
 .dark .border-slate-200,
 .dark .border-white {

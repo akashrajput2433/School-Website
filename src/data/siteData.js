@@ -157,36 +157,36 @@ export const siteConfig = {
         name: "Aditya Kumar Yadav",
         designation: "Director",
         qualification: "School Leadership & Administration",
-        phone: "",
-        image: "/assets/school/faculty-male.png"
+        phone: "9698914011",
+        image: "/assets/school/staff-aditya.jpeg"
       },
       {
         name: "Arvind Kumar Yadav",
         designation: "Principal & Manager",
         qualification: "Academic Leadership & School Management",
         phone: "9451341263",
-        image: "/assets/school/faculty-male.png"
+        image: "/assets/school/staff-arvind.jpeg"
       },
       {
         name: "Manish Yadav",
         designation: "Sr. Clerk",
         qualification: "School Office & Records",
         phone: "9794341445",
-        image: "/assets/school/faculty-male.png"
+        image: "/assets/school/staff-manish.jpeg"
       },
       {
         name: "Sudhir Yadav",
         designation: "Jr. Clerk",
         qualification: "Office Support & Assistance",
         phone: "9936274879",
-        image: "/assets/school/faculty-male.png"
+        image: "/assets/school/staff-sudhir.jpeg"
       },
       {
         name: "Sanjay Kumar Yadav",
         designation: "Office Contact",
         qualification: "Admissions & General Enquiry Support",
-        phone: "9519239371, 9691984011",
-        image: "/assets/school/faculty-male.png"
+        phone: "9519239371",
+        image: "/assets/school/staff-sanjay.jpeg"
       }
     ],
     toppers: [
