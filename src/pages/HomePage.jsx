@@ -223,7 +223,7 @@ function HeroSlider({ school, assets, admission }) {
 
 function PrincipalMessage({ assets, message }) {
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
         <motion.div
           initial="hidden"
@@ -285,7 +285,7 @@ function PrincipalMessage({ assets, message }) {
 
 function Highlights({ highlights }) {
   return (
-    <section id="features" className="bg-school-mist py-20 sm:py-24">
+    <section id="features" className="bg-school-mist py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
           eyebrow="School Highlights"
@@ -348,7 +348,7 @@ function Stats({ stats }) {
 
 function Notices({ notices }) {
   return (
-    <section id="notices" className="bg-white py-20 sm:py-24">
+    <section id="notices" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
@@ -398,7 +398,7 @@ function Notices({ notices }) {
 
 function GalleryPreview({ gallery }) {
   return (
-    <section id="gallery" className="bg-[#f8fbff] py-20 sm:py-24">
+    <section id="gallery" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
           eyebrow="Gallery Preview"
@@ -443,7 +443,7 @@ function GalleryPreview({ gallery }) {
 
 function AdmissionBand({ school }) {
   return (
-    <section id="contact" className="bg-white py-20 sm:py-24">
+    <section id="contact" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-center gap-8 rounded-[2rem] bg-school-navy p-6 text-white shadow-premium sm:p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-10">
           <div>
@@ -502,6 +502,7 @@ export function HomePage({ config }) {
     </>
   );
 }
+
 
 
 

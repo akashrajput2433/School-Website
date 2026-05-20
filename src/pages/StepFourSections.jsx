@@ -35,7 +35,7 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
 
 export function AboutSection({ about, assets }) {
   return (
-    <section id="about" className="bg-[#f8fbff] py-20 sm:py-24">
+    <section id="about" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
@@ -85,22 +85,29 @@ export function AboutSection({ about, assets }) {
 
 export function AcademicZone({ academics }) {
   return (
-    <section id="academics" className="bg-school-mist py-20 sm:py-24">
+    <section id="academics" className="bg-school-mist py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <SectionHeading align="left" eyebrow="Academic Zone" title="Structured learning from early years to Class 8." description={academics.curriculum} />
-            <div className="mt-8 rounded-3xl bg-school-navy p-6 text-white shadow-premium">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-school-gold">Class Structure</p>
-              <div className="mt-5 flex flex-wrap gap-3">
+        <SectionHeading align="left" eyebrow="Academic Zone" title="Structured learning from early years to Class 8." description={academics.curriculum} />
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid gap-5">
+            <div className="rounded-[1.75rem] bg-school-navy p-6 text-white shadow-premium">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-[0.18em] text-school-gold">Class Structure</p>
+                  <p className="mt-2 text-sm font-semibold text-blue-100">Complete academic coverage for early and middle school learners.</p>
+                </div>
+                <span className="rounded-full bg-school-gold px-4 py-2 text-sm font-black text-school-navy">Session 2025-26</span>
+              </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {academics.classStructure.map((item) => (
-                  <span key={item} className="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-blue-50">{item}</span>
+                  <span key={item} className="flex min-h-14 items-center justify-center rounded-2xl bg-white/10 px-4 text-center text-sm font-black text-blue-50 ring-1 ring-white/10">
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>
-          </div>
 
-          <div className="grid gap-5">
             <div className="grid auto-rows-fr gap-4 sm:grid-cols-2">
               {academics.systems.map((item) => (
                 <div key={item} className="flex min-h-[150px] flex-col rounded-[1.75rem] bg-white p-5 text-sm font-bold leading-6 text-slate-700 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-premium">
@@ -109,6 +116,9 @@ export function AcademicZone({ academics }) {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="grid gap-5">
             <div className="rounded-[1.75rem] bg-white p-6 shadow-soft">
               <p className="text-sm font-black uppercase tracking-[0.18em] text-school-blue">Academic Calendar</p>
               <div className="mt-5 grid gap-4">
@@ -145,7 +155,7 @@ export function AcademicZone({ academics }) {
 }
 export function StaffSection({ staff }) {
   return (
-    <section id="staff" className="bg-white py-20 sm:py-24">
+    <section id="staff" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="Staff" title="Leadership and office team." description="Meet the school administration and office team available for admissions, records, academic coordination, and parent support." />
         <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
@@ -182,7 +192,7 @@ export function StaffSection({ staff }) {
 
 export function ToppersSection({ toppers }) {
   return (
-    <section id="toppers" className="bg-[#f8fbff] py-20 sm:py-24">
+    <section id="toppers" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="School Toppers" title="Achievement wall for academic excellence." description="These premium topper cards are ready for real student photos and final result data whenever the school provides them." />
         <div className="mt-12 grid auto-rows-fr gap-5 md:grid-cols-3">
@@ -204,7 +214,7 @@ export function ToppersSection({ toppers }) {
 
 export function MandatoryDocs({ docs }) {
   return (
-    <section id="docs" className="bg-school-mist py-20 sm:py-24">
+    <section id="docs" className="bg-school-mist py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="Mandatory Docs" title="Important school documents in one place." description="This section is ready for official PDF uploads. Download buttons are shown in the final layout and can be connected to real files once documents are provided." />
         <div className="mt-12 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -225,7 +235,7 @@ export function MandatoryDocs({ docs }) {
 }
 export function VideosSection({ videos }) {
   return (
-    <section id="videos" className="bg-white py-20 sm:py-24">
+    <section id="videos" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="Videos" title="School videos and event clips." description="This section is ready for official YouTube or school event video embeds. Placeholder cards keep the layout polished until final links are shared." />
         <div className="mt-12 grid auto-rows-fr gap-5 md:grid-cols-3">
@@ -249,7 +259,7 @@ export function VideosSection({ videos }) {
 
 export function ContactSection({ school }) {
   return (
-    <section id="contact" className="bg-[#f8fbff] py-20 sm:py-24">
+    <section id="contact" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
@@ -302,3 +312,4 @@ export function ContactSection({ school }) {
     </section>
   );
 }
+

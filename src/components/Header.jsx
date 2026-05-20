@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { MapPin, Menu, PhoneCall, X } from "lucide-react";
+import { Menu, PhoneCall, X } from "lucide-react";
 
 export function Header({ school, navItems }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export function Header({ school, navItems }) {
       const documentHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
-      setIsScrolled(scrollTop > 10);
+      setIsScrolled(scrollTop > 8);
       setScrollProgress(
         documentHeight > 0 ? Math.min((scrollTop / documentHeight) * 100, 100) : 0
       );
@@ -27,7 +27,7 @@ export function Header({ school, navItems }) {
           href: item.href,
           top: item.node.getBoundingClientRect().top
         }))
-        .filter((item) => item.top <= 170)
+        .filter((item) => item.top <= 120)
         .sort((a, b) => b.top - a.top)[0];
 
       if (currentSection) {
@@ -82,19 +82,14 @@ export function Header({ school, navItems }) {
       <a
         key={item.href}
         href={item.href}
-        className={`group relative inline-flex min-h-10 items-center rounded-full px-4 text-sm font-black transition ${
+        className={`inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-3 text-[12px] font-black transition 2xl:px-3.5 2xl:text-[13px] ${
           isActive
             ? "bg-school-navy text-white shadow-soft"
-            : "text-slate-700 hover:bg-white hover:text-school-navy hover:shadow-sm"
+            : "text-slate-700 hover:bg-school-mist hover:text-school-navy"
         }`}
         aria-current={isActive ? "page" : undefined}
       >
         {item.label}
-        <span
-          className={`absolute inset-x-4 -bottom-1 h-0.5 rounded-full transition ${
-            isActive ? "bg-school-gold opacity-100" : "bg-school-gold opacity-0"
-          }`}
-        />
       </a>
     );
   };
@@ -103,39 +98,18 @@ export function Header({ school, navItems }) {
     <header
       className={`sticky top-0 z-50 border-b transition duration-300 ${
         isScrolled
-          ? "border-slate-200/80 bg-white/[0.96] shadow-soft backdrop-blur-xl"
-          : "border-white/60 bg-white/[0.92] backdrop-blur-xl"
+          ? "border-slate-200/80 bg-white/[0.97] shadow-soft backdrop-blur-xl"
+          : "border-white/70 bg-white/[0.94] backdrop-blur-xl"
       }`}
     >
-      <div className="hidden bg-school-navy text-white lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-8 py-2 text-xs font-semibold lg:px-10">
-          <p className="flex min-w-0 items-center gap-2 text-blue-100">
-            <MapPin size={14} className="shrink-0 text-school-gold" />
-            <span className="truncate">{school.address}</span>
-          </p>
-          <div className="flex shrink-0 items-center gap-4">
-            <a
-              href={`tel:${school.phone[0]}`}
-              className="flex items-center gap-2 text-blue-100 transition hover:text-school-gold"
-            >
-              <PhoneCall size={14} />
-              {school.phone[0]}
-            </a>
-            <span className="rounded-full bg-school-gold px-3 py-1 font-black text-school-navy shadow-sm">
-              Admissions 2026-27 Open
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-3 sm:px-8 lg:px-10">
+      <nav className="mx-auto flex max-w-[1520px] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a
           href="#home"
-          className="flex min-w-0 items-center gap-3"
+          className="flex min-w-0 shrink-0 items-center gap-3"
           aria-label={school.name}
           onClick={() => setIsOpen(false)}
         >
-          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white p-1 shadow-soft ring-1 ring-school-gold/50">
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white p-1 shadow-soft ring-1 ring-school-gold/60">
             <img
               src={school.logo}
               alt={`${school.name} logo`}
@@ -143,26 +117,30 @@ export function Header({ school, navItems }) {
             />
           </span>
           <span className="min-w-0 leading-tight">
-            <span className="block truncate text-lg font-black text-school-navy">
+            <span className="block truncate text-base font-black text-school-navy 2xl:text-lg">
               {school.shortName}
             </span>
-            <span className="hidden max-w-[260px] truncate text-xs font-bold text-slate-500 sm:block">
+            <span className="hidden max-w-[210px] truncate text-[11px] font-bold text-slate-500 xl:block 2xl:max-w-[250px]">
               {school.tagline}
             </span>
           </span>
         </a>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex">
+          {existingNavItems.map((item) => renderNavLink(item))}
+        </div>
+
+        <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex">
           <a
             href={`tel:${school.phone[0]}`}
-            className="hidden min-h-12 items-center gap-2 rounded-full border border-school-blue/15 bg-white px-5 text-sm font-black text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft xl:inline-flex"
+            className="hidden h-11 items-center gap-2 rounded-full border border-school-blue/15 bg-white px-4 text-sm font-black text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft 2xl:inline-flex"
           >
-            <PhoneCall size={17} />
+            <PhoneCall size={16} />
             {school.phone[0]}
           </a>
           <a
             href="#contact"
-            className="inline-flex min-h-12 items-center rounded-full bg-school-navy px-6 text-sm font-black text-white shadow-premium transition hover:-translate-y-0.5 hover:bg-school-blue"
+            className="inline-flex h-11 items-center whitespace-nowrap rounded-full bg-school-navy px-5 text-sm font-black text-white shadow-premium transition hover:-translate-y-0.5 hover:bg-school-blue"
           >
             Admission Enquiry
           </a>
@@ -170,23 +148,17 @@ export function Header({ school, navItems }) {
 
         <button
           type="button"
-          className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-school-navy shadow-sm transition hover:border-school-gold hover:bg-school-mist lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-school-navy shadow-sm transition hover:border-school-gold hover:bg-school-mist xl:hidden"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
         >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
+          {isOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
-      </div>
-
-      <div className="hidden border-t border-slate-100/80 bg-school-mist/70 lg:block">
-        <div className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto px-8 py-2 lg:px-10">
-          {existingNavItems.map((item) => renderNavLink(item))}
-        </div>
-      </div>
+      </nav>
 
       {isOpen ? (
-        <div className="fixed inset-x-0 top-[79px] z-40 border-t border-slate-100 bg-white/[0.98] px-5 py-5 shadow-premium backdrop-blur-xl lg:hidden">
+        <div className="fixed inset-x-0 top-[73px] z-40 border-t border-slate-100 bg-white/[0.98] px-5 py-5 shadow-premium backdrop-blur-xl xl:hidden">
           <div className="mx-auto grid max-h-[calc(100vh-100px)] max-w-7xl gap-5 overflow-y-auto">
             <div className="grid gap-2 sm:grid-cols-2">
               {existingNavItems.map((item) => renderNavLink(item, true))}
