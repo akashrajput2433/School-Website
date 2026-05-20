@@ -54,20 +54,23 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
   const alignment = align === "left" ? "text-left" : "mx-auto text-center";
 
   return (
-    <div className={`max-w-3xl ${alignment}`}>
-      <p className="inline-flex rounded-full bg-school-mist px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-school-blue ring-1 ring-school-blue/10">
+    <div className={`max-w-4xl ${alignment}`}>
+      <p className="inline-flex rounded-full bg-school-mist px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-school-blue ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-3xl font-bold leading-tight text-school-navy sm:text-4xl">
+      <h2 className="mt-4 text-[2.1rem] font-black leading-[1.08] text-school-navy sm:text-5xl">
         {title}
       </h2>
       <span
-        className={`mt-4 block h-1.5 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky ${
+        className={`relative mt-5 block h-2 w-40 overflow-hidden rounded-full bg-school-blue/10 ${
           align === "left" ? "" : "mx-auto"
         }`}
-      />
+      >
+        <span className="absolute inset-y-0 left-0 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky shadow-[0_8px_24px_rgba(56,189,248,0.28)]" />
+        <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-school-gold" />
+      </span>
       {description ? (
-        <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+        <p className="mt-5 text-base font-medium leading-8 text-slate-600 sm:text-lg">
           {description}
         </p>
       ) : null}
@@ -97,9 +100,9 @@ function HeroSlider({ school, assets, admission }) {
   };
 
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-[#f7fbff]">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.18),transparent_28%),linear-gradient(135deg,#ffffff_0%,#eef7ff_48%,#fff8e7_100%)]" />
-      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-[linear-gradient(90deg,rgba(8,47,99,0.08)_1px,transparent_1px),linear-gradient(rgba(8,47,99,0.06)_1px,transparent_1px)] bg-[size:42px_42px] opacity-40" />
+    <section id="home" className="relative isolate overflow-hidden bg-[#f7fbff] dark:bg-[#101d31]">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.18),transparent_28%),linear-gradient(135deg,#ffffff_0%,#eef7ff_48%,#fff8e7_100%)] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.18),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(244,185,64,0.13),transparent_26%),linear-gradient(135deg,#101d31_0%,#17243a_52%,#0f1b2e_100%)]" />
+      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-[linear-gradient(90deg,rgba(8,47,99,0.08)_1px,transparent_1px),linear-gradient(rgba(8,47,99,0.06)_1px,transparent_1px)] bg-[size:42px_42px] opacity-40 dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] dark:opacity-25" />
 
       <div className="mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 lg:py-16">
         <motion.div
@@ -109,24 +112,24 @@ function HeroSlider({ school, assets, admission }) {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="pt-4"
         >
-          <div className="inline-flex items-center gap-3 rounded-full border border-white bg-white/75 px-4 py-2 shadow-soft backdrop-blur">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white bg-white/75 px-4 py-2 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/10">
             <img
               src={school.logo}
               alt={`${school.name} logo`}
               className="h-9 w-9 rounded-full object-cover"
             />
-            <span className="text-sm font-bold text-school-navy">
+            <span className="text-sm font-bold text-school-navy dark:text-white">
               {school.type}
             </span>
           </div>
 
-          <h1 className="mt-7 max-w-3xl text-4xl font-black leading-[1.05] text-school-navy sm:text-5xl lg:text-6xl">
+          <h1 className="mt-7 max-w-3xl text-4xl font-black leading-[1.05] text-school-navy dark:text-white sm:text-5xl lg:text-6xl">
             {school.name}
           </h1>
-          <p className="mt-4 text-xl font-semibold text-school-blue">
+          <p className="mt-4 text-xl font-semibold text-school-blue dark:text-school-gold">
             {school.tagline}
           </p>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-200 sm:text-lg">
             {admission.description}
           </p>
 
@@ -140,7 +143,7 @@ function HeroSlider({ school, assets, admission }) {
             </a>
             <a
               href="#gallery"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-school-blue/20 bg-white px-6 py-3 text-sm font-bold text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-blue/40 hover:bg-school-mist"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-school-blue/20 bg-white px-6 py-3 text-sm font-bold text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-blue/40 hover:bg-school-mist dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
             >
               {admission.secondaryCta}
             </a>
@@ -151,7 +154,7 @@ function HeroSlider({ school, assets, admission }) {
               (item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white bg-white/70 px-4 py-3 text-sm font-bold text-school-navy shadow-sm backdrop-blur"
+                  className="rounded-2xl border border-white bg-white/70 px-4 py-3 text-sm font-bold text-school-navy shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-white"
                 >
                   <CheckCircle2 className="mb-2 text-school-gold" size={18} />
                   {item}
@@ -167,8 +170,8 @@ function HeroSlider({ school, assets, admission }) {
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           className="relative"
         >
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white p-2 shadow-premium">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-school-mist sm:aspect-[16/10] lg:aspect-[5/4] xl:aspect-[16/11]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white p-2 shadow-premium dark:border-white/10 dark:bg-white/10">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-school-mist dark:bg-[#17243a] sm:aspect-[16/10] lg:aspect-[5/4] xl:aspect-[16/11]">
               {assets.banners.map((banner, index) => (
                 <img
                   key={banner}
@@ -184,11 +187,11 @@ function HeroSlider({ school, assets, admission }) {
               <div className="absolute inset-0 bg-gradient-to-t from-school-navy/35 via-transparent to-white/5" />
 
               <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-                <div className="rounded-2xl bg-white/[0.92] px-4 py-3 shadow-soft backdrop-blur">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-school-blue">
+                <div className="rounded-2xl bg-white/[0.92] px-4 py-3 shadow-soft backdrop-blur dark:bg-[#17243a]/90">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-school-blue dark:text-school-gold">
                     Session 2026-27
                   </p>
-                  <p className="mt-1 text-lg font-black text-school-navy">
+                  <p className="mt-1 text-lg font-black text-school-navy dark:text-white">
                     {admission.title}
                   </p>
                 </div>

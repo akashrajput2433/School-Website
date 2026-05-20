@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Menu, Moon, PhoneCall, Sun, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu, Moon, PhoneCall, Sun, X } from "lucide-react";
 
 export function Header({ school, navItems, theme, onThemeToggle }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,6 +7,9 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [sliderStyle, setSliderStyle] = useState({ left: 4, width: 0 });
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const headerRef = useRef(null);
   const navContainerRef = useRef(null);
   const navLinkRefs = useRef({});
 
@@ -60,6 +63,15 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
         left: activeLink.offsetLeft,
         width: activeLink.offsetWidth
       });
+
+      const navNode = navContainerRef.current;
+      const targetLeft =
+        activeLink.offsetLeft - navNode.clientWidth / 2 + activeLink.offsetWidth / 2;
+
+      navNode.scrollTo({
+        left: Math.max(targetLeft, 0),
+        behavior: "smooth"
+      });
     };
 
     updateSlider();
@@ -67,6 +79,30 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
 
     return () => window.removeEventListener("resize", updateSlider);
   }, [activeHref, existingNavItems]);
+
+  useEffect(() => {
+    const navNode = navContainerRef.current;
+
+    if (!navNode) {
+      return undefined;
+    }
+
+    const updateScrollControls = () => {
+      setCanScrollLeft(navNode.scrollLeft > 4);
+      setCanScrollRight(
+        navNode.scrollLeft + navNode.clientWidth < navNode.scrollWidth - 4
+      );
+    };
+
+    updateScrollControls();
+    navNode.addEventListener("scroll", updateScrollControls, { passive: true });
+    window.addEventListener("resize", updateScrollControls);
+
+    return () => {
+      navNode.removeEventListener("scroll", updateScrollControls);
+      window.removeEventListener("resize", updateScrollControls);
+    };
+  }, [existingNavItems]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -83,7 +119,7 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
         <a
           key={item.href}
           href={item.href}
-          onClick={() => setIsOpen(false)}
+          onClick={(event) => scrollToSection(event, item.href)}
           className={`flex min-h-12 items-center justify-between rounded-2xl px-4 text-sm font-black transition ${
             isActive
               ? "bg-school-navy text-white shadow-soft dark:bg-school-gold dark:text-school-navy"
@@ -108,6 +144,7 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
           navLinkRefs.current[item.href] = node;
         }}
         href={item.href}
+        onClick={(event) => scrollToSection(event, item.href)}
         className={`relative z-10 inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-3 text-[12px] font-black transition 2xl:px-3.5 2xl:text-[13px] ${
           isActive
             ? "text-white dark:text-school-navy"
@@ -120,12 +157,42 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
     );
   };
 
+  const slideNav = (direction) => {
+    navContainerRef.current?.scrollBy({
+      left: direction === "next" ? 260 : -260,
+      behavior: "smooth"
+    });
+  };
+
+  const scrollToSection = (event, href) => {
+    const target = document.querySelector(href);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    setIsOpen(false);
+    setActiveHref(href);
+
+    const headerHeight = headerRef.current?.getBoundingClientRect().height ?? 84;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+
+    window.history.pushState(null, "", href);
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: "smooth"
+    });
+  };
+
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-50 border-b transition duration-300 ${
         isScrolled
-          ? "border-slate-200/80 bg-white/[0.97] shadow-soft backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/[0.94]"
-          : "border-white/70 bg-white/[0.94] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/[0.88]"
+          ? "border-slate-200/80 bg-white/[0.97] shadow-soft backdrop-blur-xl dark:border-white/10 dark:bg-[#111f34]/[0.96]"
+          : "border-white/70 bg-white/[0.94] backdrop-blur-xl dark:border-white/10 dark:bg-[#111f34]/[0.9]"
       }`}
     >
       <nav className="mx-auto flex max-w-[1540px] items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
@@ -133,7 +200,7 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
           href="#home"
           className="flex min-w-0 shrink-0 items-center gap-3 xl:w-[260px] 2xl:w-[300px]"
           aria-label={school.name}
-          onClick={() => setIsOpen(false)}
+          onClick={(event) => scrollToSection(event, "#home")}
         >
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white p-1 shadow-soft ring-1 ring-school-gold/60 dark:bg-slate-900">
             <img
@@ -152,38 +219,71 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
           </span>
         </a>
 
-        <div
-          ref={navContainerRef}
-          className="relative hidden min-w-0 flex-1 items-center gap-1 overflow-hidden rounded-full bg-school-mist/90 p-1 ring-1 ring-school-blue/10 dark:bg-slate-900 dark:ring-white/10 xl:flex"
-        >
-          <span
-            className="absolute bottom-1 top-1 rounded-full bg-school-navy shadow-soft transition-all duration-300 ease-out dark:bg-school-gold"
-            style={{
-              left: `${sliderStyle.left}px`,
-              width: `${sliderStyle.width}px`
-            }}
-          />
-          {existingNavItems.map((item) => renderNavLink(item))}
+        <div className="relative hidden min-w-0 flex-1 items-center rounded-full border border-school-blue/10 bg-white/75 p-1 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.06] xl:flex">
+          <button
+            type="button"
+            onClick={() => slideNav("prev")}
+            className={`relative z-20 mr-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-school-navy shadow-sm transition dark:text-white ${
+              canScrollLeft
+                ? "bg-white hover:bg-school-gold dark:bg-white/10 dark:hover:bg-school-gold dark:hover:text-school-navy"
+                : "pointer-events-none bg-white/50 opacity-40 dark:bg-white/5"
+            }`}
+            aria-label="Slide navigation left"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="pointer-events-none absolute bottom-1 left-12 top-1 z-10 w-10 bg-gradient-to-r from-white/90 to-transparent dark:from-[#1b2b45]" />
+          <div
+            ref={navContainerRef}
+            className="nav-slider-scroll min-w-0 flex-1 overflow-x-auto scroll-smooth rounded-full"
+          >
+            <div className="relative flex w-max min-w-full items-center gap-1 px-1">
+              <span
+                className="absolute bottom-0.5 top-0.5 rounded-full bg-school-navy shadow-soft transition-all duration-300 ease-out dark:bg-school-gold"
+                style={{
+                  left: `${sliderStyle.left}px`,
+                  width: `${sliderStyle.width}px`
+                }}
+              />
+              {existingNavItems.map((item) => renderNavLink(item))}
+            </div>
+          </div>
+          <div className="pointer-events-none absolute bottom-1 right-12 top-1 z-10 w-10 bg-gradient-to-l from-white/90 to-transparent dark:from-[#1b2b45]" />
+
+          <button
+            type="button"
+            onClick={() => slideNav("next")}
+            className={`relative z-20 ml-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-school-navy shadow-sm transition dark:text-white ${
+              canScrollRight
+                ? "bg-white hover:bg-school-gold dark:bg-white/10 dark:hover:bg-school-gold dark:hover:text-school-navy"
+                : "pointer-events-none bg-white/50 opacity-40 dark:bg-white/5"
+            }`}
+            aria-label="Slide navigation right"
+          >
+            <ChevronRight size={18} />
+          </button>
         </div>
 
         <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex">
           <button
             type="button"
             onClick={onThemeToggle}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-school-blue/15 bg-white text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft dark:border-white/10 dark:bg-slate-900 dark:text-school-gold"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-school-blue/15 bg-white text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft dark:border-white/10 dark:bg-white/10 dark:text-school-gold"
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <a
             href={`tel:${school.phone[0]}`}
-            className="hidden h-11 items-center gap-2 rounded-full border border-school-blue/15 bg-white px-4 text-sm font-black text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft dark:border-white/10 dark:bg-slate-900 dark:text-white 2xl:inline-flex"
+            className="hidden h-11 items-center gap-2 rounded-full border border-school-blue/15 bg-white px-4 text-sm font-black text-school-navy shadow-sm transition hover:-translate-y-0.5 hover:border-school-gold hover:shadow-soft dark:border-white/10 dark:bg-white/10 dark:text-white 2xl:inline-flex"
           >
             <PhoneCall size={16} />
             {school.phone[0]}
           </a>
           <a
             href="#contact"
+            onClick={(event) => scrollToSection(event, "#contact")}
             className="inline-flex h-11 items-center whitespace-nowrap rounded-full bg-school-navy px-5 text-sm font-black text-white shadow-premium transition hover:-translate-y-0.5 hover:bg-school-blue dark:bg-school-gold dark:text-school-navy"
           >
             Admission Enquiry

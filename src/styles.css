@@ -32,8 +32,9 @@ body {
 
 .dark body {
   background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 34rem),
-    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 34rem),
+    radial-gradient(circle at top right, rgba(244, 185, 64, 0.1), transparent 28rem),
+    linear-gradient(180deg, #101d31 0%, #17243a 48%, #0f1b2e 100%);
 }
 
 button,
@@ -53,6 +54,15 @@ img {
   max-width: 100%;
 }
 
+.nav-slider-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-slider-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background: rgba(244, 185, 64, 0.35);
   color: #082f63;
@@ -70,7 +80,7 @@ textarea {
 
 .dark input,
 .dark textarea {
-  background: #0f172a;
+  background: #17243a;
   color: #f8fafc;
   border-color: rgba(255, 255, 255, 0.14);
 }
@@ -81,12 +91,12 @@ textarea {
 }
 
 .dark .bg-white {
-  background-color: #0f172a !important;
+  background-color: #17243a !important;
 }
 
 .dark .bg-\[\#f8fbff\],
 .dark .bg-school-mist {
-  background-color: #0b1220 !important;
+  background-color: #101d31 !important;
 }
 
 .dark .text-school-navy,
@@ -98,7 +108,7 @@ textarea {
 
 .dark .text-slate-600,
 .dark .text-slate-500 {
-  color: #cbd5e1 !important;
+  color: #d6e2f1 !important;
 }
 
 .dark .border-slate-100,
@@ -112,11 +122,11 @@ textarea {
 }
 
 .dark .shadow-soft {
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 18px 45px rgba(2, 8, 23, 0.26) !important;
 }
 
 .dark .shadow-premium {
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42) !important;
+  box-shadow: 0 24px 70px rgba(2, 8, 23, 0.34) !important;
 }
 
 @media (max-width: 1023px) {

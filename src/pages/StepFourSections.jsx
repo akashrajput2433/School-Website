@@ -17,20 +17,23 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
   const alignment = align === "left" ? "text-left" : "mx-auto text-center";
 
   return (
-    <div className={`max-w-3xl ${alignment}`}>
-      <p className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-school-blue ring-1 ring-school-blue/10">
+    <div className={`max-w-4xl ${alignment}`}>
+      <p className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-school-blue ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-3xl font-bold leading-tight text-school-navy sm:text-4xl">
+      <h2 className="mt-4 text-[2.1rem] font-black leading-[1.08] text-school-navy sm:text-5xl">
         {title}
       </h2>
       <span
-        className={`mt-4 block h-1.5 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky ${
+        className={`relative mt-5 block h-2 w-40 overflow-hidden rounded-full bg-school-blue/10 ${
           align === "left" ? "" : "mx-auto"
         }`}
-      />
+      >
+        <span className="absolute inset-y-0 left-0 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky shadow-[0_8px_24px_rgba(56,189,248,0.28)]" />
+        <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-school-gold" />
+      </span>
       {description ? (
-        <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+        <p className="mt-5 text-base font-medium leading-8 text-slate-600 sm:text-lg">
           {description}
         </p>
       ) : null}
