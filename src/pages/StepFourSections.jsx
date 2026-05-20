@@ -45,7 +45,7 @@ export function AboutSection({ about, assets }) {
   return (
     <section id="about" className="bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
           <div>
             <SectionHeading
               align="left"
@@ -73,8 +73,23 @@ export function AboutSection({ about, assets }) {
           </div>
 
           <div className="grid gap-5">
-            <div className="overflow-hidden rounded-[2rem] bg-white p-2 shadow-premium">
-              <img src={assets.event} alt="Students activity at S.D. Public School" className="h-[360px] w-full rounded-[1.5rem] object-cover" />
+            <div className="group relative overflow-hidden rounded-[2rem] bg-white p-2 shadow-premium ring-1 ring-slate-100 dark:bg-white/[0.08] dark:ring-white/10">
+              <div className="relative h-[430px] overflow-hidden rounded-[1.5rem] bg-school-mist sm:h-[500px] lg:h-[560px]">
+                <img
+                  src={assets.aboutHero}
+                  alt="S.D. Public & Convent School main gate"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-school-navy/60 via-school-navy/5 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 rounded-3xl bg-white/[0.92] p-5 shadow-soft backdrop-blur dark:bg-[#17243a]/90">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-school-blue dark:text-school-gold">
+                    Our Campus Identity
+                  </p>
+                  <p className="mt-2 text-xl font-black leading-tight text-school-navy dark:text-white">
+                    A welcoming school environment for confident learning.
+                  </p>
+                </div>
+              </div>
             </div>
             <div className="grid auto-rows-fr gap-4 sm:grid-cols-3">
               {about.timeline.map((item) => (
@@ -97,7 +112,7 @@ export function AcademicZone({ academics }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading align="left" eyebrow="Academic Zone" title="Structured learning from early years to Class 8." description={academics.curriculum} />
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="grid gap-5">
             <div className="rounded-[1.75rem] bg-school-navy p-6 text-white shadow-premium">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -138,16 +153,17 @@ export function AcademicZone({ academics }) {
                 ))}
               </div>
             </div>
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-soft">
+            <div className="mx-auto w-full max-w-[560px] rounded-[1.75rem] bg-white p-5 text-center shadow-premium ring-1 ring-slate-100 sm:p-6">
               <p className="text-sm font-black uppercase tracking-[0.18em] text-school-blue">Grading System</p>
-              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100">
+              <p className="mt-2 text-sm font-semibold text-slate-600">Clear assessment bands for student progress.</p>
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100 text-left">
                 <div className="grid grid-cols-[0.75fr_1fr_1.35fr] bg-school-navy px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white">
                   <span>Grade</span>
                   <span>Marks</span>
                   <span>Remark</span>
                 </div>
                 {academics.gradingSystem.map((item) => (
-                  <div key={item.grade} className="grid grid-cols-[0.75fr_1fr_1.35fr] border-t border-slate-100 px-4 py-3 text-sm">
+                  <div key={item.grade} className="grid grid-cols-[0.75fr_1fr_1.35fr] border-t border-slate-100 px-4 py-3 text-sm transition hover:bg-school-mist/70">
                     <span className="font-black text-school-navy">{item.grade}</span>
                     <span className="font-semibold text-slate-600">{item.range}</span>
                     <span className="font-semibold text-slate-700">{item.remark}</span>
@@ -169,14 +185,11 @@ export function StaffSection({ staff }) {
         <div className="relative">
           <SectionHeading eyebrow="Staff" title="Leadership and office team." description="Meet the school administration and office team available for admissions, records, academic coordination, and parent support." />
           <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
-            {staff.map((person, index) => (
+            {staff.map((person) => (
               <article key={person.name} className="group flex h-full min-h-[520px] flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1.5 hover:ring-school-gold/60 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
                 <div className="relative h-72 shrink-0 overflow-hidden bg-school-mist">
                   <img src={person.image} alt={person.name} className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-school-navy/85 via-school-navy/12 to-transparent" />
-                  <div className="staff-rank-badge absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy shadow-soft backdrop-blur">
-                    Team {String(index + 1).padStart(2, "0")}
-                  </div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="inline-flex rounded-full bg-school-gold px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy">
                       {person.designation}
@@ -233,12 +246,12 @@ export function MandatoryDocs({ docs }) {
     <section id="docs" className="bg-school-mist py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="Mandatory Docs" title="Important school documents in one place." description="This section is ready for official PDF uploads. Download buttons are shown in the final layout and can be connected to real files once documents are provided." />
-        <div className="mt-12 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {docs.map((doc) => (
-            <article key={doc} className="flex min-h-[255px] flex-col items-center rounded-[1.75rem] bg-white p-5 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:ring-school-gold/50 hover:shadow-premium">
-              <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-school-navy text-school-gold"><FileText size={25} /></div>
-              <h3 className="mt-5 min-h-12 text-base font-black text-school-navy">{doc}</h3>
-              <button type="button" className="mt-auto inline-flex items-center justify-center gap-2 rounded-full border border-school-blue/20 px-4 py-2 text-sm font-bold text-school-navy transition hover:bg-school-navy hover:text-white">
+            <article key={doc} className="flex min-h-[190px] flex-col items-center justify-between rounded-[1.35rem] border border-white bg-white p-4 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:ring-school-gold/50 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
+              <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-school-navy text-school-gold shadow-soft dark:bg-school-gold dark:text-school-navy"><FileText size={22} /></div>
+              <h3 className="mt-4 min-h-10 text-[15px] font-black leading-5 text-school-navy">{doc}</h3>
+              <button type="button" className="mt-4 inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-school-blue/20 px-4 text-xs font-black text-school-navy transition hover:bg-school-navy hover:text-white dark:border-white/10 dark:hover:bg-school-gold dark:hover:text-school-navy">
                 <Download size={16} />
                 PDF Soon
               </button>
@@ -280,7 +293,7 @@ export function ContactSection({ school }) {
     <section id="contact" className="relative overflow-hidden bg-[#f8fbff] py-14 sm:py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(56,189,248,0.16),transparent_28%),radial-gradient(circle_at_88%_18%,rgba(244,185,64,0.16),transparent_24%)] dark:opacity-60" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+        <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="rounded-[2rem] bg-school-navy p-5 text-white shadow-premium sm:p-6">
             <div className="max-w-3xl">
               <p className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-school-gold ring-1 ring-white/10">
@@ -353,7 +366,7 @@ export function ContactSection({ school }) {
             </div>
           </div>
 
-          <form className="rounded-[2rem] border border-white bg-white/[0.92] p-5 shadow-premium ring-1 ring-slate-100 backdrop-blur sm:p-6 dark:border-white/10 dark:bg-white/[0.08]">
+          <form className="mx-auto w-full max-w-[760px] rounded-[2.25rem] border border-white bg-white/[0.94] p-6 shadow-premium ring-1 ring-slate-100 backdrop-blur sm:p-8 dark:border-white/10 dark:bg-white/[0.08]">
             <div className="mb-5 flex items-center gap-4 rounded-3xl bg-school-mist p-4 dark:bg-white/10">
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-school-navy text-school-gold dark:bg-school-gold dark:text-school-navy">
                 <Send size={22} />
@@ -364,14 +377,14 @@ export function ContactSection({ school }) {
               </div>
             </div>
 
-            <div className="grid gap-3.5 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Parent Name<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter name" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Phone Number<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter phone" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Class Interested<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Example: L.K.G." /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Email<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Optional" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy sm:col-span-2">Message<textarea className="min-h-24 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Write your enquiry" /></label>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Parent Name<input className="min-h-[54px] rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter name" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Phone Number<input className="min-h-[54px] rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter phone" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Class Interested<input className="min-h-[54px] rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Example: L.K.G." /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Email<input className="min-h-[54px] rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Optional" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy sm:col-span-2">Message<textarea className="min-h-28 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Write your enquiry" /></label>
             </div>
-            <button type="button" className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-school-navy px-6 py-3 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
+            <button type="button" className="mt-6 inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-full bg-school-navy px-6 py-3 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
               Send Enquiry
               <Send size={17} />
             </button>

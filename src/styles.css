@@ -54,6 +54,11 @@ img {
   max-width: 100%;
 }
 
+main section p:not([class*="uppercase"]):not([class*="tracking"]):not([class*="text-center"]) {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .nav-slider-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -127,10 +132,6 @@ textarea {
 .dark .text-slate-600,
 .dark .text-slate-500 {
   color: #d6e2f1 !important;
-}
-
-.dark .staff-rank-badge {
-  color: #082f63 !important;
 }
 
 .dark .border-slate-100,

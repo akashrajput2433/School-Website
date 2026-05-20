@@ -38,6 +38,7 @@ export const siteConfig = {
       "/assets/school/banner-admission-green.jpeg",
       "/assets/school/banner-admission-gold.jpeg"
     ],
+    aboutHero: "/assets/school/about-school-gate.png",
     event: "/assets/school/event-classroom.jpeg",
     facultyMale: "/assets/school/faculty-male.png",
     facultyFemale: "/assets/school/faculty-female.png"
