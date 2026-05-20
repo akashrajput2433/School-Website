@@ -24,6 +24,11 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
       <h2 className="mt-3 text-3xl font-bold leading-tight text-school-navy sm:text-4xl">
         {title}
       </h2>
+      <span
+        className={`mt-4 block h-1.5 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky ${
+          align === "left" ? "" : "mx-auto"
+        }`}
+      />
       {description ? (
         <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
           {description}
