@@ -405,45 +405,62 @@ function Notices({ notices }) {
 }
 
 function GalleryPreview({ gallery }) {
+  const sliderItems = [...gallery, ...gallery];
+
   return (
-    <section id="gallery" className="bg-[#f8fbff] py-16 sm:py-20">
+    <section id="gallery" className="overflow-hidden bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
           eyebrow="Gallery Preview"
-          title="Real moments from our school community."
-          description="Photos are placed with careful cropping so the campus, students, and faculty feel authentic and premium."
+          title="School tour moments in a premium gallery slider."
+          description="A smooth auto-scrolling gallery with equal-size photo cards, clean cropping, and real moments from the school community."
         />
 
-        <div className="mt-12 grid auto-rows-fr gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {gallery.map((item, index) => (
-            <motion.article
-              key={item.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className={`group overflow-hidden rounded-[1.75rem] bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-premium ${
-                index === 1 ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-school-navy/65 via-school-navy/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-school-gold">
-                    {item.category}
-                  </p>
-                  <h3 className="mt-1 text-xl font-black">{item.title}</h3>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          variants={fadeUp}
+          transition={{ duration: 0.6 }}
+          className="relative mt-12"
+        >
+          <div className="pointer-events-none absolute -left-1 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#f8fbff] to-transparent dark:from-[#101d31] sm:w-28" />
+          <div className="pointer-events-none absolute -right-1 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#f8fbff] to-transparent dark:from-[#101d31] sm:w-28" />
+
+          <div className="overflow-hidden rounded-[2rem] border border-white bg-white/80 p-3 shadow-premium ring-1 ring-slate-100 backdrop-blur dark:border-white/10 dark:bg-white/[0.06] dark:ring-white/10">
+            <div className="gallery-slider-track flex w-max gap-4">
+              {sliderItems.map((item, index) => (
+                <article
+                  key={`${item.title}-${index}`}
+                  className="group relative h-[260px] w-[330px] shrink-0 overflow-hidden rounded-[1.5rem] bg-school-mist shadow-soft ring-1 ring-white/80 transition duration-300 hover:-translate-y-1 hover:shadow-premium sm:h-[310px] sm:w-[430px] lg:h-[340px] lg:w-[520px]"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
+                    loading={index < gallery.length ? "eager" : "lazy"}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-school-navy/70 via-school-navy/5 to-transparent opacity-90" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-school-gold">
+                      {item.category}
+                    </p>
+                    <h3 className="mt-1 text-xl font-black">{item.title}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 flex justify-center gap-2">
+            {gallery.map((item) => (
+              <div
+                key={item.title}
+                className="h-2.5 w-8 rounded-full bg-school-blue/20 first:bg-school-gold dark:bg-white/20"
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

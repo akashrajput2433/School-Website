@@ -63,6 +63,24 @@ img {
   display: none;
 }
 
+.gallery-slider-track {
+  animation: gallery-auto-scroll 42s linear infinite;
+}
+
+.gallery-slider-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-auto-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 ::selection {
   background: rgba(244, 185, 64, 0.35);
   color: #082f63;

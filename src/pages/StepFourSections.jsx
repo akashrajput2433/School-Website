@@ -266,51 +266,104 @@ export function VideosSection({ videos }) {
 }
 
 export function ContactSection({ school }) {
+  const contactNumbers = school.phone.slice(0, 2);
+
   return (
-    <section id="contact" className="bg-[#f8fbff] py-16 sm:py-20">
+    <section id="contact" className="relative overflow-hidden bg-[#f8fbff] py-14 sm:py-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(56,189,248,0.16),transparent_28%),radial-gradient(circle_at_88%_18%,rgba(244,185,64,0.16),transparent_24%)] dark:opacity-60" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <SectionHeading align="left" eyebrow="Contact Us" title="Ready to discuss your child's admission?" description="Reach the school office for admissions, transport details, fee structure, class availability, and campus visit guidance." />
-            <div className="mt-8 grid gap-4">
+        <div className="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+          <div className="rounded-[2rem] bg-school-navy p-5 text-white shadow-premium sm:p-6">
+            <div className="max-w-3xl">
+              <p className="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-school-gold ring-1 ring-white/10">
+                Contact Us
+              </p>
+              <h2 className="mt-4 text-[1.9rem] font-black leading-[1.08] text-white sm:text-[2.35rem]">
+                Ready to discuss your child's admission?
+              </h2>
+              <span className="relative mt-5 block h-2 w-40 overflow-hidden rounded-full bg-white/10">
+                <span className="absolute inset-y-0 left-0 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-sky to-white shadow-[0_8px_24px_rgba(244,185,64,0.26)]" />
+                <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-school-gold" />
+              </span>
+              <p className="mt-4 text-sm font-semibold leading-7 text-blue-50 sm:text-base">
+                Reach the school office for admissions, transport details, fee structure, class availability, and campus visit guidance.
+              </p>
+            </div>
+
+            <div className="mt-5 grid gap-3">
               <div className="grid auto-rows-fr gap-3 sm:grid-cols-2">
                 {school.publicInfo.map((item) => (
-                  <div key={item.label} className="min-h-[128px] rounded-[1.75rem] bg-white p-5 shadow-soft ring-1 ring-slate-100">
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-school-blue">{item.label}</p>
-                    <p className="mt-2 text-lg font-black text-school-navy">{item.value}</p>
+                  <div key={item.label} className="min-h-[86px] rounded-3xl border border-white/10 bg-white/[0.08] p-4 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.12]">
+                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-school-gold">{item.label}</p>
+                    <p className="mt-1.5 break-words text-base font-black leading-6 text-white">{item.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="flex gap-4 rounded-[1.75rem] bg-white p-5 shadow-soft ring-1 ring-slate-100">
-                <MapPin className="shrink-0 text-school-blue" size={24} />
-                <p className="text-sm font-semibold leading-7 text-slate-700">{school.address}</p>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.75rem] bg-white p-5 shadow-soft ring-1 ring-slate-100">
-                  <Phone className="text-school-blue" size={24} />
-                  <div className="mt-4 grid gap-2">
-                    {school.phone.map((phone) => (
-                      <a key={phone} href={`tel:${phone}`} className="text-sm font-black text-school-navy hover:text-school-blue">{phone}</a>
-                    ))}
+
+              <div className="grid gap-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-4 shadow-soft backdrop-blur">
+                    <div className="flex items-center gap-3">
+                      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-school-gold text-school-navy">
+                        <Phone size={21} />
+                      </span>
+                      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-school-gold">Call Office</p>
+                    </div>
+                    <div className="mt-3 grid gap-2">
+                      {contactNumbers.map((phone) => (
+                        <a key={phone} href={`tel:${phone}`} className="inline-flex min-h-11 items-center justify-between rounded-2xl bg-white/[0.1] px-4 text-sm font-black text-white ring-1 ring-white/10 transition hover:bg-school-gold hover:text-school-navy">
+                          {phone}
+                          <Phone size={15} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-4 shadow-soft backdrop-blur">
+                    <div className="flex items-center gap-3">
+                      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-school-gold text-school-navy">
+                        <Mail size={21} />
+                      </span>
+                      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-school-gold">Email Us</p>
+                    </div>
+                    <a href={`mailto:${school.email}`} className="mt-3 block rounded-2xl bg-white/[0.1] px-4 py-3 text-sm font-black leading-6 text-white ring-1 ring-white/10 transition hover:bg-school-gold hover:text-school-navy">
+                      <span className="break-all">{school.email}</span>
+                    </a>
                   </div>
                 </div>
-                <div className="rounded-[1.75rem] bg-white p-5 shadow-soft ring-1 ring-slate-100">
-                  <Mail className="text-school-blue" size={24} />
-                  <a href={`mailto:${school.email}`} className="mt-4 block text-sm font-black text-school-navy hover:text-school-blue">{school.email}</a>
+
+                <div className="flex gap-3 rounded-3xl border border-white/10 bg-white/[0.08] p-4 shadow-soft backdrop-blur">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-school-gold text-school-navy">
+                    <MapPin size={21} />
+                  </span>
+                  <div>
+                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-school-gold">School Address</p>
+                    <p className="mt-1.5 text-sm font-semibold leading-6 text-blue-50">{school.address}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <form className="rounded-[2rem] bg-white p-6 shadow-premium ring-1 ring-slate-100 sm:p-8">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Parent Name<input className="min-h-12 rounded-2xl border border-slate-200 px-4 text-sm outline-none transition focus:border-school-blue" placeholder="Enter name" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Phone Number<input className="min-h-12 rounded-2xl border border-slate-200 px-4 text-sm outline-none transition focus:border-school-blue" placeholder="Enter phone" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Class Interested<input className="min-h-12 rounded-2xl border border-slate-200 px-4 text-sm outline-none transition focus:border-school-blue" placeholder="Example: L.K.G." /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy">Email<input className="min-h-12 rounded-2xl border border-slate-200 px-4 text-sm outline-none transition focus:border-school-blue" placeholder="Optional" /></label>
-              <label className="grid gap-2 text-sm font-bold text-school-navy sm:col-span-2">Message<textarea className="min-h-32 rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-school-blue" placeholder="Write your enquiry" /></label>
+          <form className="rounded-[2rem] border border-white bg-white/[0.92] p-5 shadow-premium ring-1 ring-slate-100 backdrop-blur sm:p-6 dark:border-white/10 dark:bg-white/[0.08]">
+            <div className="mb-5 flex items-center gap-4 rounded-3xl bg-school-mist p-4 dark:bg-white/10">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-school-navy text-school-gold dark:bg-school-gold dark:text-school-navy">
+                <Send size={22} />
+              </span>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-school-blue dark:text-school-gold">Admission Enquiry</p>
+                <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-200">Share your details and the office team will guide you.</p>
+              </div>
             </div>
-            <button type="button" className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-school-navy px-6 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-school-blue">
+
+            <div className="grid gap-3.5 sm:grid-cols-2">
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Parent Name<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter name" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Phone Number<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Enter phone" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Class Interested<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Example: L.K.G." /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy">Email<input className="min-h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Optional" /></label>
+              <label className="grid gap-2 text-sm font-bold text-school-navy sm:col-span-2">Message<textarea className="min-h-24 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-school-blue focus:ring-4 focus:ring-school-blue/10" placeholder="Write your enquiry" /></label>
+            </div>
+            <button type="button" className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-school-navy px-6 py-3 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
               Send Enquiry
               <Send size={17} />
             </button>

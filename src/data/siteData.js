@@ -233,29 +233,34 @@ export const siteConfig = {
     ],
     galleryPreview: [
       {
-        title: "Admission Campaign",
-        category: "Admissions",
-        image: "/assets/school/banner-admission-green.jpeg"
+        title: "Educational Tour Group",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-1.jpeg"
       },
       {
-        title: "Classroom Activity",
-        category: "Events",
-        image: "/assets/school/event-classroom.jpeg"
+        title: "Faculty Moments",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-2.jpeg"
       },
       {
-        title: "Faculty Gathering",
-        category: "Staff",
-        image: "/assets/school/faculty-male.png"
+        title: "Staff Tour Group",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-3.jpeg"
       },
       {
-        title: "Women Faculty Team",
-        category: "Staff",
-        image: "/assets/school/faculty-female.png"
+        title: "Student Visit",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-4.jpeg"
       },
       {
-        title: "Admission Poster",
-        category: "Admissions",
-        image: "/assets/school/banner-admission-gold.jpeg"
+        title: "Temple Visit",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-5.jpeg"
+      },
+      {
+        title: "Outdoor Group Photo",
+        category: "School Tour",
+        image: "/assets/school/gallery-tour-6.jpeg"
       }
     ],
     videos: [
