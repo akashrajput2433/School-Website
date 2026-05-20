@@ -55,7 +55,7 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
 
   return (
     <div className={`max-w-3xl ${alignment}`}>
-      <p className="text-sm font-bold uppercase tracking-[0.2em] text-school-blue">
+      <p className="inline-flex rounded-full bg-school-mist px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-school-blue ring-1 ring-school-blue/10">
         {eyebrow}
       </p>
       <h2 className="mt-3 text-3xl font-bold leading-tight text-school-navy sm:text-4xl">
@@ -293,7 +293,7 @@ function Highlights({ highlights }) {
           description="A modern school experience with strong academics, thoughtful supervision, and activities that help children grow beyond textbooks."
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((feature, index) => {
             const Icon = iconMap[feature.icon] || Star;
             return (
@@ -304,7 +304,7 @@ function Highlights({ highlights }) {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
                 transition={{ duration: 0.5, delay: index * 0.06 }}
-                className="group rounded-3xl border border-white bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-premium"
+                className="group flex h-full min-h-[260px] flex-col rounded-[1.75rem] border border-white bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-school-gold/50 hover:shadow-premium"
               >
                 <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-school-navy text-school-gold transition group-hover:bg-school-blue group-hover:text-white">
                   <Icon size={26} />
@@ -366,11 +366,11 @@ function Notices({ notices }) {
           </a>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid auto-rows-fr gap-5 lg:grid-cols-3">
           {notices.map((notice) => (
             <article
               key={notice.title}
-              className="rounded-3xl border border-slate-100 bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-premium"
+              className="flex h-full min-h-[240px] flex-col rounded-[1.75rem] border border-slate-100 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-school-gold/50 hover:shadow-premium"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="inline-flex items-center gap-2 rounded-full bg-school-mist px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-school-blue">
@@ -406,7 +406,7 @@ function GalleryPreview({ gallery }) {
           description="Photos are placed with careful cropping so the campus, students, and faculty feel authentic and premium."
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid auto-rows-fr gap-5 md:grid-cols-2 lg:grid-cols-4">
           {gallery.map((item, index) => (
             <motion.article
               key={item.title}
@@ -415,7 +415,7 @@ function GalleryPreview({ gallery }) {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className={`group overflow-hidden rounded-3xl bg-white shadow-soft ${
+              className={`group overflow-hidden rounded-[1.75rem] bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-premium ${
                 index === 1 ? "md:col-span-2 lg:col-span-2" : ""
               }`}
             >

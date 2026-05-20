@@ -13,13 +13,15 @@
 }
 
 html {
-  scroll-padding-top: 88px;
+  scroll-padding-top: 150px;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   text-rendering: optimizeLegibility;
 }
 
@@ -48,4 +50,15 @@ img {
 :focus-visible {
   outline: 3px solid rgba(244, 185, 64, 0.85);
   outline-offset: 4px;
+}
+
+input,
+textarea {
+  background: #ffffff;
+}
+
+@media (max-width: 1023px) {
+  html {
+    scroll-padding-top: 92px;
+  }
 }

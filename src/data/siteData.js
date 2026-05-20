@@ -10,7 +10,7 @@ export const siteConfig = {
     udiseCode: "09434102720",
     affiliationNo: "PRA09431331507",
     academicSession: "2025-26",
-    phone: ["9691984011", "9451341263", "9794341445", "8707858651"],
+    phone: ["9451341263", "9691984011", "9794341445", "9936274879", "9519239371"],
     email: "sdpublicschoolhalamai@gmail.com",
     logo: "/assets/school/logo-web.png",
     publicInfo: [
@@ -154,21 +154,38 @@ export const siteConfig = {
     },
     staff: [
       {
-        name: "Principal",
-        designation: "Academic Leadership",
-        qualification: "School Administration & Teaching Guidance",
+        name: "Aditya Kumar Yadav",
+        designation: "Director",
+        qualification: "School Leadership & Administration",
+        phone: "",
         image: "/assets/school/faculty-male.png"
       },
       {
-        name: "Primary Teachers Team",
-        designation: "L.K.G. to Class 5",
-        qualification: "Child-centered classroom teaching",
-        image: "/assets/school/faculty-female.png"
+        name: "Arvind Kumar Yadav",
+        designation: "Principal & Manager",
+        qualification: "Academic Leadership & School Management",
+        phone: "9451341263",
+        image: "/assets/school/faculty-male.png"
       },
       {
-        name: "Middle School Faculty",
-        designation: "Class 6 to 8",
-        qualification: "Subject-wise academic support",
+        name: "Manish Yadav",
+        designation: "Sr. Clerk",
+        qualification: "School Office & Records",
+        phone: "9794341445",
+        image: "/assets/school/faculty-male.png"
+      },
+      {
+        name: "Sudhir Yadav",
+        designation: "Jr. Clerk",
+        qualification: "Office Support & Assistance",
+        phone: "9936274879",
+        image: "/assets/school/faculty-male.png"
+      },
+      {
+        name: "Sanjay Kumar Yadav",
+        designation: "Office Contact",
+        qualification: "Admissions & General Enquiry Support",
+        phone: "9519239371, 9691984011",
         image: "/assets/school/faculty-male.png"
       }
     ],
