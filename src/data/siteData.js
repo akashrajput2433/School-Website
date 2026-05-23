@@ -9,7 +9,7 @@ export const siteConfig = {
     address: "Halamai, Chhitpalgarh, Mandhata, Pratapgarh - 230402, Uttar Pradesh",
     udiseCode: "09434102720",
     affiliationNo: "PRA09431331507",
-    academicSession: "2025-26",
+    academicSession: "2026-27",
     phone: ["9451341263", "9691984011", "9794341445", "9936274879", "9519239371"],
     email: "sdpublicschoolhalamai@gmail.com",
     logo: "/assets/school/logo-web.png",
@@ -17,7 +17,7 @@ export const siteConfig = {
       { label: "Official Name", value: "S.D. Public School" },
       { label: "UDISE Code", value: "09434102720" },
       { label: "Affiliation No.", value: "PRA09431331507" },
-      { label: "Academic Session", value: "2025-26" }
+      { label: "Academic Session", value: "2026-27" }
     ]
   },
   navItems: [
