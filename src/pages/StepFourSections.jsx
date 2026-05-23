@@ -1,7 +1,10 @@
+import { useRef } from "react";
 import {
   BookOpenCheck,
   Building2,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Download,
   FileText,
   Mail,
@@ -222,46 +225,104 @@ export function StaffSection({ staff }) {
 }
 
 export function ToppersSection({ toppers }) {
+  const sliderRef = useRef(null);
+
+  const slideToppers = (direction) => {
+    if (!sliderRef.current) {
+      return;
+    }
+
+    sliderRef.current.scrollBy({
+      left: direction === "next" ? 330 : -330,
+      behavior: "smooth"
+    });
+  };
+
   return (
     <section id="toppers" className="relative overflow-hidden bg-[#f8fbff] py-16 sm:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(244,185,64,0.16),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(56,189,248,0.16),transparent_26%)] dark:opacity-60" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="relative">
-        <SectionHeading eyebrow="School Toppers" title="Achievement wall for academic excellence." description="Celebrating our bright achievers with their class-wise performance, confidence, and dedication to learning." />
-        <div className="mt-12 grid auto-rows-fr gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {toppers.map((student) => (
-            <article key={student.name} className="group relative mx-auto flex h-full min-h-[420px] w-full max-w-[345px] flex-col overflow-hidden rounded-[1.65rem] border border-white bg-white p-2 shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1.5 hover:ring-school-gold/60 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
-              <div className="relative h-[235px] overflow-hidden rounded-[1.25rem] bg-school-mist sm:h-[250px] lg:h-[260px]">
-                <img src={student.image} alt={`${student.name} school topper`} className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-school-navy/88 via-school-navy/18 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3 text-white">
-                  <div>
-                    <p className="inline-flex rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-school-gold ring-1 ring-white/20 backdrop-blur">
-                      {student.className}
+          <SectionHeading eyebrow="School Toppers" title="Achievement wall for academic excellence." description="Celebrating our bright achievers with their class-wise performance, confidence, and dedication to learning." />
+          <div className="relative mt-12">
+            <div className="pointer-events-none absolute -left-1 top-0 z-10 hidden h-full w-20 bg-gradient-to-r from-[#f8fbff] to-transparent dark:from-[#101d31] md:block" />
+            <div className="pointer-events-none absolute -right-1 top-0 z-10 hidden h-full w-20 bg-gradient-to-l from-[#f8fbff] to-transparent dark:from-[#101d31] md:block" />
+
+            <button
+              type="button"
+              onClick={() => slideToppers("prev")}
+              className="absolute -left-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white bg-white text-school-navy shadow-premium transition hover:-translate-y-[54%] hover:bg-school-gold md:inline-flex dark:border-white/10 dark:bg-[#17243a] dark:text-school-gold"
+              aria-label="Slide toppers left"
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            <div
+              ref={sliderRef}
+              className="nav-slider-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-4 md:px-10"
+            >
+              {toppers.map((student) => (
+                <article key={student.name} className="group relative flex min-h-[360px] w-[265px] shrink-0 snap-start flex-col overflow-hidden rounded-[1.45rem] border border-white bg-white p-2 shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1.5 hover:ring-school-gold/60 hover:shadow-premium sm:w-[285px] dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
+                  <div className="relative h-[185px] overflow-hidden rounded-[1.1rem] bg-school-mist sm:h-[195px]">
+                    <img src={student.image} alt={`${student.name} school topper`} className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-school-navy/88 via-school-navy/18 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2 text-white">
+                      <div className="min-w-0">
+                        <p className="inline-flex max-w-full rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-school-gold ring-1 ring-white/20 backdrop-blur">
+                          {student.className}
+                        </p>
+                        <h3 className="mt-1.5 truncate text-lg font-black leading-tight">{student.name}</h3>
+                      </div>
+                      <p className="shrink-0 rounded-xl bg-school-gold px-2.5 py-1.5 text-base font-black text-school-navy shadow-soft">
+                        {student.score}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-3 text-center">
+                    <p className="mx-auto inline-flex rounded-full bg-school-mist px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.13em] text-school-blue ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
+                      {student.achievement}
                     </p>
-                    <h3 className="mt-2 text-xl font-black leading-tight">{student.name}</h3>
+                    <p className="mt-2.5 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-200">
+                      Recognized for focused study habits, classroom discipline, and excellent academic performance.
+                    </p>
+                    <div className="mt-auto pt-3">
+                      <div className="h-1.5 overflow-hidden rounded-full bg-school-blue/10 dark:bg-white/10">
+                        <span className="block h-full rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky" style={{ width: student.progress || student.score }} />
+                      </div>
+                    </div>
                   </div>
-                  <p className="rounded-2xl bg-school-gold px-3 py-2 text-lg font-black text-school-navy shadow-soft">
-                    {student.score}
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col p-4 text-center">
-                <p className="mx-auto inline-flex rounded-full bg-school-mist px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-school-blue ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
-                  {student.achievement}
-                </p>
-                <p className="mt-3 text-[13px] font-semibold leading-6 text-slate-600 dark:text-slate-200">
-                  Recognized for focused study habits, classroom discipline, and excellent academic performance.
-                </p>
-                <div className="mt-auto pt-4">
-                  <div className="h-2 overflow-hidden rounded-full bg-school-blue/10 dark:bg-white/10">
-                    <span className="block h-full rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky" style={{ width: student.progress || student.score }} />
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                </article>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => slideToppers("next")}
+              className="absolute -right-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white bg-white text-school-navy shadow-premium transition hover:-translate-y-[54%] hover:bg-school-gold md:inline-flex dark:border-white/10 dark:bg-[#17243a] dark:text-school-gold"
+              aria-label="Slide toppers right"
+            >
+              <ChevronRight size={22} />
+            </button>
+
+            <div className="mt-2 flex justify-center gap-2 md:hidden">
+              <button
+                type="button"
+                onClick={() => slideToppers("prev")}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-school-navy text-school-gold shadow-soft"
+                aria-label="Slide toppers left"
+              >
+                <ChevronLeft size={21} />
+              </button>
+              <button
+                type="button"
+                onClick={() => slideToppers("next")}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-school-navy text-school-gold shadow-soft"
+                aria-label="Slide toppers right"
+              >
+                <ChevronRight size={21} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
