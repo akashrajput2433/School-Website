@@ -189,7 +189,7 @@ export function StaffSection({ staff }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="relative">
           <SectionHeading eyebrow="Staff" title="Leadership and office team." description="Meet the school administration and office team available for admissions, records, academic coordination, and parent support." />
-          <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <div className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {staff.map((person) => (
               <article key={person.name} className="group flex h-full min-h-[520px] flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1.5 hover:ring-school-gold/60 hover:shadow-premium dark:border-white/10 dark:bg-white/[0.08] dark:ring-white/10">
                 <div className="relative h-72 shrink-0 overflow-hidden bg-school-mist">
@@ -204,10 +204,16 @@ export function StaffSection({ staff }) {
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-[1.35rem] font-black leading-tight text-school-navy dark:text-white">{person.name}</h3>
                   <p className="mt-3 min-h-[56px] text-sm font-semibold leading-7 text-slate-600 dark:text-slate-200">{person.qualification}</p>
-                  <a href={`tel:${person.phone}`} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-school-navy px-4 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
-                    <Phone size={17} />
-                    {person.phone}
-                  </a>
+                  {person.phone ? (
+                    <a href={`tel:${person.phone}`} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-school-navy px-4 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-school-blue hover:shadow-premium dark:bg-school-gold dark:text-school-navy">
+                      <Phone size={17} />
+                      {person.phone}
+                    </a>
+                  ) : (
+                    <span className="mt-auto inline-flex min-h-12 items-center justify-center rounded-full bg-school-mist px-4 text-sm font-black text-school-navy ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
+                      School Co-ordination
+                    </span>
+                  )}
                 </div>
               </article>
             ))}

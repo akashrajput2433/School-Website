@@ -170,6 +170,13 @@ export const siteConfig = {
         image: "/assets/school/staff-arvind.jpeg"
       },
       {
+        name: "Gobind Pal",
+        designation: "Co-ordinator",
+        qualification: "School Co-ordination & Student Support",
+        phone: "8707858651",
+        image: "/assets/school/staff-gobind-pal.jpeg"
+      },
+      {
         name: "Manish Yadav",
         designation: "Sr. Clerk",
         qualification: "School Office & Records",
