@@ -29,7 +29,8 @@ import {
   Sparkles,
   Star,
   Trophy,
-  UsersRound
+  UsersRound,
+  X
 } from "lucide-react";
 
 const iconMap = {
@@ -54,23 +55,23 @@ function SectionHeading({ eyebrow, title, description, align = "center" }) {
   const alignment = align === "left" ? "text-left" : "mx-auto text-center";
 
   return (
-    <div className={`max-w-4xl ${alignment}`}>
-      <p className="inline-flex rounded-full bg-school-mist px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-school-blue ring-1 ring-school-blue/10 dark:bg-white/10 dark:text-school-gold dark:ring-white/10">
+    <div className={`premium-section-heading max-w-4xl ${alignment}`}>
+      <p className="premium-eyebrow">
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-[2.1rem] font-black leading-[1.08] text-school-navy sm:text-5xl">
+      <h2 className="premium-section-title">
         {title}
       </h2>
       <span
-        className={`relative mt-5 block h-2 w-40 overflow-hidden rounded-full bg-school-blue/10 ${
+        className={`premium-heading-rule ${
           align === "left" ? "" : "mx-auto"
         }`}
       >
-        <span className="absolute inset-y-0 left-0 w-28 rounded-full bg-gradient-to-r from-school-gold via-school-blue to-school-sky shadow-[0_8px_24px_rgba(56,189,248,0.28)]" />
-        <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-school-gold" />
+        <span />
+        <i />
       </span>
       {description ? (
-        <p className="mt-5 text-base font-medium leading-8 text-slate-600 sm:text-lg">
+        <p className="premium-section-description">
           {description}
         </p>
       ) : null}
@@ -123,7 +124,7 @@ function HeroSlider({ school, assets, admission }) {
             </span>
           </div>
 
-          <h1 className="mt-7 max-w-3xl text-4xl font-black leading-[1.05] text-school-navy dark:text-white sm:text-5xl lg:text-6xl">
+          <h1 className="premium-hero-title mt-7 max-w-3xl text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
             {school.name}
           </h1>
           <p className="mt-4 text-xl font-semibold text-school-blue dark:text-school-gold">
@@ -243,9 +244,9 @@ function PrincipalMessage({ assets, message }) {
         >
           <div className="overflow-hidden rounded-[1.75rem] bg-school-mist shadow-premium">
             <img
-              src={assets.facultyMale}
-              alt="S.D. Public School faculty group"
-              className="h-full min-h-[340px] w-full object-cover object-center"
+              src={assets.principalPortrait}
+              alt="S.D. Public & Convent School principal"
+              className="h-full min-h-[380px] w-full object-cover object-center"
             />
           </div>
           <div className="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/70 bg-white/[0.92] p-5 shadow-soft backdrop-blur">
@@ -405,15 +406,31 @@ function Notices({ notices }) {
 }
 
 function GalleryPreview({ gallery }) {
+  const [selectedImage, setSelectedImage] = useState(null);
   const sliderItems = [...gallery, ...gallery];
+
+  useEffect(() => {
+    if (!selectedImage) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
   return (
     <section id="gallery" className="overflow-hidden bg-[#f8fbff] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
-          eyebrow="Gallery Preview"
-          title="School tour moments in a premium gallery slider."
-          description="A smooth auto-scrolling gallery with equal-size photo cards, clean cropping, and real moments from the school community."
+          eyebrow="Campus Life Gallery"
+          title="Academics, sports, tours, and joyful student moments."
+          description="A premium auto-scrolling gallery showcasing classroom focus, digital learning, playground energy, excursions, and real school memories."
         />
 
         <motion.div
@@ -430,9 +447,12 @@ function GalleryPreview({ gallery }) {
           <div className="overflow-hidden rounded-[2rem] border border-white bg-white/80 p-3 shadow-premium ring-1 ring-slate-100 backdrop-blur dark:border-white/10 dark:bg-white/[0.06] dark:ring-white/10">
             <div className="gallery-slider-track flex w-max gap-4">
               {sliderItems.map((item, index) => (
-                <article
+                <button
+                  type="button"
                   key={`${item.title}-${index}`}
-                  className="group relative h-[260px] w-[330px] shrink-0 overflow-hidden rounded-[1.5rem] bg-school-mist shadow-soft ring-1 ring-white/80 transition duration-300 hover:-translate-y-1 hover:shadow-premium sm:h-[310px] sm:w-[430px] lg:h-[340px] lg:w-[520px]"
+                  onClick={() => setSelectedImage(item)}
+                  className="group relative h-[260px] w-[330px] shrink-0 overflow-hidden rounded-[1.5rem] bg-school-mist text-left shadow-soft ring-1 ring-white/80 transition duration-300 hover:-translate-y-1 hover:shadow-premium sm:h-[310px] sm:w-[430px] lg:h-[350px] lg:w-[535px]"
+                  aria-label={`Open ${item.title} photo`}
                 >
                   <img
                     src={item.image}
@@ -442,12 +462,15 @@ function GalleryPreview({ gallery }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-school-navy/70 via-school-navy/5 to-transparent opacity-90" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-school-gold">
+                    <p className="inline-flex rounded-full bg-school-gold px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy">
                       {item.category}
                     </p>
-                    <h3 className="mt-1 text-xl font-black">{item.title}</h3>
+                    <h3 className="mt-3 text-xl font-black leading-tight">{item.title}</h3>
                   </div>
-                </article>
+                  <span className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] text-school-navy opacity-0 shadow-soft transition duration-300 group-hover:opacity-100">
+                    View
+                  </span>
+                </button>
               ))}
             </div>
           </div>
@@ -462,6 +485,49 @@ function GalleryPreview({ gallery }) {
           </div>
         </motion.div>
       </div>
+
+      {selectedImage ? (
+        <div
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-school-navy/85 px-4 py-6 backdrop-blur-md"
+          onClick={() => setSelectedImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedImage.title} preview`}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 18 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 18 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="relative w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/15 bg-white p-2 shadow-premium dark:bg-[#17243a]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-school-navy shadow-soft transition hover:-translate-y-0.5 hover:bg-school-gold"
+              aria-label="Close gallery preview"
+            >
+              <X size={20} />
+            </button>
+            <div className="relative max-h-[82vh] overflow-hidden rounded-[1.5rem] bg-school-mist">
+              <img
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                className="h-full max-h-[82vh] w-full object-contain"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-school-navy/85 to-transparent p-5 text-white sm:p-7">
+                <p className="inline-flex rounded-full bg-school-gold px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-school-navy">
+                  {selectedImage.category}
+                </p>
+                <h3 className="mt-3 text-2xl font-black leading-tight sm:text-3xl">
+                  {selectedImage.title}
+                </h3>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -475,7 +541,7 @@ function AdmissionBand({ school }) {
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-school-gold">
               Admissions Helpdesk
             </p>
-            <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
+            <h2 className="premium-dark-title mt-3 text-3xl font-black leading-tight sm:text-4xl">
               Ready to discuss your child's admission?
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-blue-100">

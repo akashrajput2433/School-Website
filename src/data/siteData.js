@@ -39,6 +39,7 @@ export const siteConfig = {
       "/assets/school/banner-admission-gold.jpeg"
     ],
     aboutHero: "/assets/school/about-school-gate.png",
+    principalPortrait: "/assets/school/principal-message.jpeg",
     event: "/assets/school/event-classroom.jpeg",
     facultyMale: "/assets/school/faculty-male.png",
     facultyFemale: "/assets/school/faculty-female.png"
@@ -191,9 +192,49 @@ export const siteConfig = {
       }
     ],
     toppers: [
-      { name: "Aarav Singh", className: "Class 8", score: "96%", achievement: "Academic Excellence" },
-      { name: "Ananya Patel", className: "Class 7", score: "95%", achievement: "Consistent Performer" },
-      { name: "Riya Sharma", className: "Class 6", score: "94%", achievement: "All-round Achievement" }
+      {
+        name: "Afifa Bano",
+        className: "Class 3",
+        score: "92%",
+        achievement: "Excellent Performance",
+        image: "/assets/school/topper-afifa-bano.jpeg"
+      },
+      {
+        name: "Sonakshi Saroj",
+        className: "Class 4",
+        score: "93%",
+        achievement: "Outstanding Performance",
+        image: "/assets/school/topper-sonakshi.jpeg"
+      },
+      {
+        name: "Satyam",
+        className: "Class 5",
+        score: "92%",
+        achievement: "Consistent Performer",
+        image: "/assets/school/topper-satyam.jpeg"
+      },
+      {
+        name: "Shriyanshi",
+        className: "Class 6",
+        score: "94%",
+        achievement: "Academic Excellence",
+        image: "/assets/school/topper-shriyanshi.jpeg"
+      },
+      {
+        name: "Ruhi Singh",
+        className: "Class details soon",
+        score: "92%",
+        achievement: "Excellent Performance",
+        image: "/assets/school/topper-ruhi-singh.jpeg"
+      },
+      {
+        name: "Kartikey Shukla",
+        className: "Class details soon",
+        score: "Topper",
+        progress: "92%",
+        achievement: "Academic Achiever",
+        image: "/assets/school/topper-kartikey-shukla.jpeg"
+      }
     ],
     notices: [
       {
@@ -234,33 +275,73 @@ export const siteConfig = {
     ],
     galleryPreview: [
       {
+        title: "Kabaddi Team Spirit",
+        category: "Sports Excellence",
+        image: "/assets/school/gallery-activity-1.jpeg"
+      },
+      {
+        title: "Playground Energy",
+        category: "Sports Excellence",
+        image: "/assets/school/gallery-activity-2.jpeg"
+      },
+      {
+        title: "Focused Classroom Learning",
+        category: "Academic Life",
+        image: "/assets/school/gallery-activity-3.jpeg"
+      },
+      {
+        title: "Disciplined Study Session",
+        category: "Academic Life",
+        image: "/assets/school/gallery-activity-4.jpeg"
+      },
+      {
+        title: "Computer Lab Practice",
+        category: "Digital Learning",
+        image: "/assets/school/gallery-activity-5.jpeg"
+      },
+      {
+        title: "Joyful Recreation",
+        category: "Student Life",
+        image: "/assets/school/gallery-activity-6.jpeg"
+      },
+      {
+        title: "Cricket Field Moments",
+        category: "Sports Excellence",
+        image: "/assets/school/gallery-activity-7.jpeg"
+      },
+      {
+        title: "Outdoor Team Games",
+        category: "Student Life",
+        image: "/assets/school/gallery-activity-8.jpeg"
+      },
+      {
         title: "Educational Tour Group",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-1.jpeg"
       },
       {
         title: "Faculty Moments",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-2.jpeg"
       },
       {
         title: "Staff Tour Group",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-3.jpeg"
       },
       {
         title: "Student Visit",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-4.jpeg"
       },
       {
         title: "Temple Visit",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-5.jpeg"
       },
       {
         title: "Outdoor Group Photo",
-        category: "School Tour",
+        category: "Excursion Moments",
         image: "/assets/school/gallery-tour-6.jpeg"
       }
     ],
