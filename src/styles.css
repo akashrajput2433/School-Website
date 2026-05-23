@@ -313,4 +313,22 @@ textarea {
   html {
     scroll-padding-top: 92px;
   }
+
+  .mobile-premium-school-name {
+    background: linear-gradient(105deg, #082f63 0%, #0d65c2 48%, #0a8ecb 78%, #082f63 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    font-size: 1.08rem;
+    font-weight: 950;
+    line-height: 1.05;
+    text-shadow: 0 10px 28px rgba(8, 47, 99, 0.12);
+  }
+
+  .dark .mobile-premium-school-name {
+    background: linear-gradient(105deg, #ffffff 0%, #dbeafe 42%, #f4b940 82%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+  }
 }

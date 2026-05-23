@@ -210,7 +210,7 @@ export function Header({ school, navItems, theme, onThemeToggle }) {
             />
           </span>
           <span className="min-w-0 leading-tight">
-            <span className="block truncate text-base font-black text-school-navy dark:text-white 2xl:text-lg">
+            <span className="mobile-premium-school-name block truncate text-base font-black text-school-navy dark:text-white 2xl:text-lg">
               {school.shortName}
             </span>
             <span className="hidden max-w-[210px] truncate text-[11px] font-bold text-slate-500 dark:text-slate-300 xl:block 2xl:max-w-[250px]">
